@@ -1,5 +1,12 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+# НЕ
+# ЗАБЫТЬ
+# УБРАТЬ
+# -g
+# ФЛАГ
+# ОТСЮДА
+# !!!!!!!!!
+CFLAGS=-Wall -Wextra -Werror -g
 
 NAME=libftprintf.a
 
