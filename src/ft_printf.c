@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:35 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/22 23:40:51 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:48:49 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 #include "../lib/libft.h"
 #include "ft_printf.h"
 
-static void	ft_putnbr_unsigned_fd(unsigned int n, int fd)
+static int	ft_putnbr_unsigned_fd(va_list args)
 {
-	long	nbr;
+	size_t	i;
+	char	*str;
 
-	nbr = (long) n;
-	if (nbr < 0)
+	str = ft_ltoa_base("0123456789", va_arg(args, unsigned int));
+	if (!str)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = -nbr;
+		ft_putstr_fd("(nil)", 0);
+		return (5);
 	}
-	if (nbr >= 10)
+	i = 0;
+	while (str[i])
 	{
-		ft_putnbr_fd((nbr / 10), fd);
-		ft_putnbr_fd((nbr % 10), fd);
+		i++;
 	}
-	if (nbr < 10)
-	{
-		ft_putchar_fd(nbr + '0', fd);
-	}
+	write(0, str, i);
+	free(str);
+	return (i);
 }
 
 static int ft_puthex_ptr(va_list args)
@@ -53,34 +53,33 @@ static int ft_puthex_ptr(va_list args)
 		ft_putstr_fd("(nil)", 0);
 		return (5);
 	}
-	ft_putstr_fd("0x", 0);
-	ft_putstr_fd(hex, 0);
 	l = ft_strlen(hex);
+	write(0, "0x", 2);
+	write(0, hex, l);
 	free(hex);
 	return (l + 2);
 }
 
-static void ft_puthex_ui(int toupper, va_list args)
+static int ft_puthex_ui(int toupper, va_list args)
 {
 	size_t	i;
-	unsigned int arg = va_arg(args, unsigned int);
-	char *hex = ft_ltoa_base("0123456789abcdef", (long) arg);
+
+	char *hex = ft_ltoa_base("0123456789abcdef", va_arg(args, unsigned int));
 	if (!hex)
 	{
 		ft_putstr_fd("(nil)", 0);
-		return ;
+		return (5);
 	}
-	if (toupper)
+	i = 0;
+	while (hex[i])
 	{
-		i = 0;
-		while (hex[i])
-		{
+		if (toupper)
 			hex[i] = ft_toupper(hex[i]);
-			i++;
-		}
+		i++;
 	}
-	ft_putstr_fd(hex, 0);
+	write(0, hex, i);
 	free(hex);
+	return (i);
 }
 
 static int	ft_putstr_arg(va_list args)
@@ -126,13 +125,13 @@ int	ft_format(char flag, va_list args)
 	else if (flag == 'd' || flag == 'i')
 		count = ft_putnbr_arg(args);
 	else if (flag == 'u')
-		count = ft_putnbr_unsigned_fd(va_arg(args, unsigned int), 0);
+		count = ft_putnbr_unsigned_fd(args);
 	else if (flag == 'p')
 		count = ft_puthex_ptr(args);
 	else if (flag == 'x')
-		ft_puthex_ui(0, args);
+		count = ft_puthex_ui(0, args);
 	else if (flag == 'X')
-		ft_puthex_ui(1, args);
+		count = ft_puthex_ui(1, args);
 	else if (flag == '%')
 		ft_putchar_fd('%', 0);
 	return (count);
