@@ -6,11 +6,10 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:35 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/23 15:39:57 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:57:35 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
 #include "ft_printf.h"
 
 int	ft_format(char flag, va_list args)

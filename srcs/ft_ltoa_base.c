@@ -6,11 +6,11 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:20:15 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/22 16:09:38 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:56:36 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "ft_printf.h"
 
 static int	ft_count_digits_base_l(long n, size_t base_l)
 {
