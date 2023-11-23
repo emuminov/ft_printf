@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:18:24 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/23 15:24:07 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:39:39 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_putnbr_unsigned(va_list args)
 	return (l);
 }
 
-int ft_puthex_ptr(va_list args)
+int	ft_puthex_ptr(va_list args)
 {
 	size_t	l;
 	void	*arg;
@@ -68,7 +68,7 @@ int ft_puthex_ptr(va_list args)
 	return (l + 2);
 }
 
-int ft_puthex_ui(int toupper, va_list args)
+int	ft_puthex_ui(int toupper, va_list args)
 {
 	size_t	i;
 	char	*str;
@@ -101,4 +101,3 @@ int	ft_putstr_arg(va_list args)
 	write(0, str, l);
 	return (l);
 }
-

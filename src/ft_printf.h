@@ -6,12 +6,12 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:37 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/23 15:27:00 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:40:15 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 # include <stdarg.h>
 # include "../lib/libft.h"
 
