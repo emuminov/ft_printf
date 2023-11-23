@@ -6,12 +6,20 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:37 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/21 15:13:31 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:27:00 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_from_to_base(const char *from, const char *to, const char *str);
-char	*ft_itoa_base(const char *base, int n);
-char	*ft_ltoa_base(const char *base, long n);
-int		ft_printf(const char *str, ...);
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
+# include <stdarg.h>
+# include "../lib/libft.h"
 
+char	*ft_ltoa_base(const char *base, long n);
+int		ft_putnbr(va_list args);
+int		ft_putnbr_unsigned(va_list args);
+int		ft_puthex_ptr(va_list args);
+int		ft_puthex_ui(int toupper, va_list args);
+int		ft_putstr_arg(va_list args);
+int		ft_printf(const char *str, ...);
+#endif
