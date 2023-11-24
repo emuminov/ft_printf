@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:18:24 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 16:41:18 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/24 22:53:32 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_putnbr(va_list args)
 	if (!str)
 		return (0);
 	l = ft_strlen(str);
-	write(0, str, l);
+	write(1, str, l);
 	free(str);
 	return (l);
 }
@@ -38,7 +38,7 @@ int	ft_putnbr_unsigned(va_list args)
 		return (5);
 	}
 	l = ft_strlen(str);
-	write(0, str, l);
+	write(1, str, l);
 	free(str);
 	return (l);
 }
@@ -62,8 +62,8 @@ int	ft_puthex_ptr(va_list args)
 		return (5);
 	}
 	l = ft_strlen(str);
-	write(0, "0x", 2);
-	write(0, str, l);
+	write(1, "0x", 2);
+	write(1, str, l);
 	free(str);
 	return (l + 2);
 }
@@ -86,7 +86,7 @@ int	ft_puthex_ui(int toupper, va_list args)
 			str[i] = ft_toupper(str[i]);
 		i++;
 	}
-	write(0, str, i);
+	write(1, str, i);
 	free(str);
 	return (i);
 }
@@ -98,6 +98,6 @@ int	ft_putstr_arg(va_list args)
 
 	str = va_arg(args, const char *);
 	l = ft_strlen(str);
-	write(0, str, l);
+	write(1, str, l);
 	return (l);
 }
