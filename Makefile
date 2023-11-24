@@ -14,8 +14,8 @@ LIB_DIR=libft
 LIB_PATH=$(LIB_DIR)/$(LIB)
 
 #rules---------------------------------------------
-$(NAME): $(OBJS) $(LIB)  
-	mv $(LIB) $(NAME)
+$(NAME): $(OBJS) $(LIB) $(HEAD)
+	cp $(LIB) $(NAME)
 	ar crv $(NAME) $(OBJS)
 
 %.o: %.c $(SRCS) $(HEAD)
@@ -34,7 +34,7 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIB_DIR) $@
-	rm $(NAME) -f
+	rm $(NAME) $(LIB) -f
 
 re: fclean
 	$(MAKE) all --no-print-directory

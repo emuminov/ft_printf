@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 16:41:42 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:26:37 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,44 @@
 
 #include "../ft_printf.h"
 
+#define printf_test(input, format_str, args...) \
+{ \
+	printf("TESTING INPUT: %s\n", input); \
+	int printf_output = printf(format_str, args); \
+	int ft_printf_output = ft_printf(format_str, args); \
+	printf("printf len:   \t\t%d\n", printf_output); \
+	printf("ft_printf len:\t\t%d\n", ft_printf_output); \
+	printf("\n"); \
+}
+
+#define red(str) \
+	printf("\033[1;31m"); \
+	printf(str); \
+	printf("\033[1;0m");
+
 int	main(void)
 {
 	{
-		printf("char test\n");
-		int printf1 = printf("hello! %c hehe\n", 'a');
-		int printf2 = ft_printf("hello! %c hehe\n", 'a');
-		int printf3 = ft_printf("hello! %c %c hehe\n", 'a', 'b');
-		int printf4 = ft_printf("hello! %c %c hehe\n", 'a', 'b');
-		printf("printf a is:         %d\n", printf1);
-		printf("ft_printf a is:      %d\n", printf2);
-		printf("printf a b is:       %d\n", printf3);
-		printf("ft_printf a b is:    %d\n", printf4);
+		red("char test\n");
+		// printf("\033[1;31mchar test\033[1;0m\n");
+		printf("--------------------------------\n");
+		printf_test("a", "hello! %c hehe\n", 'a');
+		printf_test("a, b", "hello! %c %c hehe\n", 'a', 'b');
+		printf_test("c", "%c\n", 'c');
+		printf_test("-200", "%c\n", -200);
+		printf_test("-256", "%c\n", -256);
+		printf_test("256", "%c\n", 256);
+		printf_test("-400", "%c\n", -400);
+		printf_test("400", "%c\n", 400);
 	}
 
 	{
-		printf("\nstring test\n");
-		int printf1 = printf("hello! %s hehe\n", "ohoho");
-		int printf2 = ft_printf("hello! %s hehe\n", "ohoho");
-		printf("printf ohoho is:       %d\n", printf1);
-		printf("ft_printf ohoho is:    %d\n", printf2);
+		red("\nstring test\n");
+		printf("--------------------------------\n");
+		printf_test("ohoho", "hello! %s hehe\n", "ohoho");
+		printf_test("(empty string)", "hello! %s hehe\n", "");
+		printf_test("(empty string)", "%sa\n", "");
+		printf_test("(empty string)", "%s", "");
 	}
 
 	{
@@ -48,114 +66,72 @@ int	main(void)
 			overflow2++;
 			i++;
 		}
-		printf("\nint test\n");
-		int printf1 = printf("hello! %d hehe\n", 21);
-		int printf2 = ft_printf("hello! %d hehe\n", 21);
-		int printf3 = printf("hello! %d hehe\n", INT_MIN);
-		int printf4 = ft_printf("hello! %d hehe\n", INT_MIN);
-		int printf5 = printf("hello! %d hehe\n", overflow1);
-		int printf6 = ft_printf("hello! %d hehe\n", overflow1);
-		int printf7 = printf("hello! %d hehe\n", overflow2);
-		int printf8 = ft_printf("hello! %d hehe\n", overflow2);
-		printf("printf 21 is:             %d\n", printf1);
-		printf("ft_printf 21 is:          %d\n", printf2);
-		printf("printf INT_MIN is:        %d\n", printf3);
-		printf("ft_printf INT_MIN is:     %d\n", printf4);
-		printf("printf INT_MIN - 4 is:    %d\n", printf5);
-		printf("ft_printf INT_MIN - 4 is: %d\n", printf6);
-		printf("printf INT_MAX + 4 is:    %d\n", printf7);
-		printf("ft_printf INT_MAX + 4 is: %d\n", printf8);
+		red("\nint test\n");
+		printf("--------------------------------\n");
+		printf_test("42", "hello! %d hehe\n", 42);
+		printf_test("0", "hello! %d hehe\n", 0);
+		printf_test("INT_MIN", "hello! %d hehe\n", INT_MIN);
+		printf_test("INT_MIN - 3", "hello! %d hehe\n", overflow1);
+		printf_test("INT_MAX + 3", "hello! %d hehe\n", overflow2);
 	}
 
 	{
-		printf("\nsigned decimal test\n");
-		int printf1 = printf("hello! %i hehe\n", 21);
-		int printf2 = ft_printf("hello! %i hehe\n", 21);
-		printf("printf 21 is:         %i\n", printf1);
-		printf("ft_printf 21 is:      %i\n", printf2);
+		int i = 0;
+		int overflow1 = INT_MIN;
+		int overflow2 = INT_MAX;
+		while (i < 4)
+		{
+			overflow1--;
+			overflow2++;
+			i++;
+		}
+		red("\nsigned decimal test\n");
+		printf("--------------------------------\n");
+		printf_test("42", "hello! %i hehe\n", 42);
+		printf_test("0", "hello! %i hehe\n", 0);
+		printf_test("INT_MIN", "hello! %i hehe\n", INT_MIN);
+		printf_test("INT_MIN - 3", "hello! %i hehe\n", overflow1);
+		printf_test("INT_MAX + 3", "hello! %i hehe\n", overflow2);
 	}
 
 	{
-		printf("\npointers test\n");
-		int printf1 = printf("hello! %p hehe\n", NULL);
-		int printf2 = ft_printf("hello! %p hehe\n", NULL);
-		int printf3 = printf("hello! %p hehe\n", "hehe");
-		int printf4 = ft_printf("hello! %p hehe\n", "hehe");
-		printf("printf NULL is:       %i\n", printf1);
-		printf("ft_printf NULL is:    %i\n", printf2);
-		printf("printf char * is:     %i\n", printf3);
-		printf("ft_printf char * is:  %i\n", printf4);
+		red("\npointers test\n");
+		printf("--------------------------------\n");
+		printf_test("(nil)", "hello! %p hehe\n", NULL);
+		printf_test("hehe", "hello! %p hehe\n", "hehe");
 	}
 
 	{
-		printf("\nunsigned int test\n");
-		int printf1 = printf("hello! %u hehe\n", 4);
-		int printf2 = ft_printf("hello! %u hehe\n", 4);
-		int printf3 = printf("hello! %u hehe\n", -4);
-		int printf4 = ft_printf("hello! %u hehe\n", -4);
-		printf("printf 4 is:       %i\n", printf1);
-		printf("ft_printf 4 is:    %i\n", printf2);
-		printf("printf -4 is:      %i\n", printf3);
-		printf("ft_printf -4 is:   %i\n", printf4);
+		red("\nunsigned int test\n");
+		printf("--------------------------------\n");
+		printf_test("4", "hello! %u hehe\n", 4);
+		printf_test("-4", "hello! %u hehe\n", -4);
 	}
 
 	{
-		printf("\nlowercase hexadecimal test\n");
-		int printf1 = printf("hello! %x hehe\n", 100);
-		int printf2 = ft_printf("hello! %x hehe\n", 100);
-		int printf3 = printf("hello! %x hehe\n", UINT_MAX);
-		int printf4 = ft_printf("hello! %x hehe\n", UINT_MAX);
-		int printf5 = printf("hello! %x hehe\n", UINT_MAX + 1);
-		int printf6 = ft_printf("hello! %x hehe\n", UINT_MAX + 1);
-		int printf7 = printf("hello! %x hehe\n", UINT_MAX + 2);
-		int printf8 = ft_printf("hello! %x hehe\n", UINT_MAX + 2);
-		int printf9 = printf("hello! %x hehe\n", -12);
-		int printf10 = ft_printf("hello! %x hehe\n", -12);
-		printf("printf 100 is:                %i\n", printf1);
-		printf("ft_printf 100 is:             %i\n", printf2);
-		printf("printf UINT_MAX is:           %i\n", printf3);
-		printf("ft_printf UINT_MAX is:        %i\n", printf4);
-		printf("printf UINT_MAX + 1 is:       %i\n", printf5);
-		printf("ft_printf UINT_MAX + 1 is:    %i\n", printf6);
-		printf("printf UINT_MAX + 2 is:       %i\n", printf7);
-		printf("ft_printf UINT_MAX + 2 is:    %i\n", printf8);
-		printf("printf -12 is:                %i\n", printf9);
-		printf("ft_printf -12 is:             %i\n", printf10);
+		red("\nlowercase hexadecimal test\n");
+		printf("--------------------------------\n");
+		printf_test("100", "hello! %x hehe\n", 100);
+		printf_test("UINT_MAX", "hello! %x hehe\n", UINT_MAX);
+		printf_test("UINT_MAX + 1", "hello! %x hehe\n", UINT_MAX + 1);
+		printf_test("UINT_MAX + 2", "hello! %x hehe\n", UINT_MAX + 2);
+		printf_test("-12", "hello! %x hehe\n", -12);
 	}
 
 	{
-		printf("\nuppercase hexadecimal test\n");
-		int printf1 = printf("hello! %X hehe\n", 100);
-		int printf2 = ft_printf("hello! %X hehe\n", 100);
-		int printf3 = printf("hello! %X hehe\n", UINT_MAX);
-		int printf4 = ft_printf("hello! %X hehe\n", UINT_MAX);
-		int printf5 = printf("hello! %X hehe\n", UINT_MAX + 1);
-		int printf6 = ft_printf("hello! %X hehe\n", UINT_MAX + 1);
-		int printf7 = printf("hello! %X hehe\n", UINT_MAX + 2);
-		int printf8 = ft_printf("hello! %X hehe\n", UINT_MAX + 2);
-		int printf9 = printf("hello! %X hehe\n", -12);
-		int printf10 = ft_printf("hello! %X hehe\n", -12);
-		printf("printf 100 is:                %i\n", printf1);
-		printf("ft_printf 100 is:             %i\n", printf2);
-		printf("printf UINT_MAX is:           %i\n", printf3);
-		printf("ft_printf UINT_MAX is:        %i\n", printf4);
-		printf("printf UINT_MAX + 1 is:       %i\n", printf5);
-		printf("ft_printf UINT_MAX + 1 is:    %i\n", printf6);
-		printf("printf UINT_MAX + 2 is:       %i\n", printf7);
-		printf("ft_printf UINT_MAX + 2 is:    %i\n", printf8);
-		printf("printf -12 is:                %i\n", printf9);
-		printf("ft_printf -12 is:             %i\n", printf10);
+		red("\nuppercase hexadecimal test\n");
+		printf("--------------------------------\n");
+		printf_test("100", "hello! %X hehe\n", 100);
+		printf_test("UINT_MAX", "hello! %X hehe\n", UINT_MAX);
+		printf_test("UINT_MAX + 1", "hello! %X hehe\n", UINT_MAX + 1);
+		printf_test("UINT_MAX + 2", "hello! %X hehe\n", UINT_MAX + 2);
+		printf_test("-12", "hello! %X hehe\n", -12);
 	}
 
 	{
-		printf("\npersentage sign test\n");
-		int printf1 = printf("hello! %% hehe\n");
-		int printf2 = ft_printf("hello! %% hehe\n");
-		int printf3 = printf("hello! %% hehe %d\n", 100);
-		int printf4 = ft_printf("hello! %% hehe %d\n", 100);
-		printf("printf %% is:                %i\n", printf1);
-		printf("ft_printf %% is:             %i\n", printf2);
-		printf("printf %% 100 is:            %i\n", printf3);
-		printf("ft_printf %% 100 is:         %i\n", printf4);
+		red("\npersentage sign test\n");
+		printf("--------------------------------\n");
+		printf_test("(nothing)", "hello! %% hehe\n", 0);
+		printf_test("100", "hello! %% hehe %d\n", 100);
 	}
 }
