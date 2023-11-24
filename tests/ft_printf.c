@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 20:26:37 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:36:27 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(void)
 	{
 		red("\npointers test\n");
 		printf("--------------------------------\n");
-		printf_test("(nil)", "hello! %p hehe\n", NULL);
+		printf_test("NULL", "hello! %p hehe\n", NULL);
 		printf_test("hehe", "hello! %p hehe\n", "hehe");
 	}
 
@@ -133,5 +133,11 @@ int	main(void)
 		printf("--------------------------------\n");
 		printf_test("(nothing)", "hello! %% hehe\n", 0);
 		printf_test("100", "hello! %% hehe %d\n", 100);
+	}
+
+	{
+		red("\nmultiple args test\n");
+		printf("--------------------------------\n");
+		printf_test("NULL, hello, INT_MAX, &printf, h", "%p %s %d %p %% %c %X\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
 	}
 }
