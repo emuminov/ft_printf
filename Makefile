@@ -3,31 +3,28 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 
 #subject declarations------------------------------
-FILES=ft_ltoa_base.c ft_printf.c ft_printf_funcs.c
 NAME=libftprintf.a
-SRCS_DIR=srcs
-OBJS_DIR=objs
-HEAD_DIR=includes
-HEAD=$(HEAD_DIR)/ft_printf.h
-SRCS=$(FILES:%.c=$(SRCS_DIR)/%.c)
-OBJS=$(FILES:%.c=$(OBJS_DIR)/%.o)
+HEAD=ft_printf.h
+SRCS=ft_printf.c ft_printf_funcs.c ft_ltoa_base.c
+OBJS=$(SRCS:%.c=%.o)
 
 #libft declarations--------------------------------
 LIB=libft.a
 LIB_DIR=libft
+LIB_PATH=$(LIB_DIR)/$(LIB)
 
 #rules---------------------------------------------
-$(NAME): $(LIB) $(OBJS) 
-	cp $(LIB) $(NAME)
-	ar rcsv $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIB)  
+	mv $(LIB) $(NAME)
+	ar crv $(NAME) $(OBJS)
 
-$(OBJS): %.o: $(SRCS) $(HEAD)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEAD_DIR)
+%.o: %.c $(SRCS) $(HEAD)
+	$(CC) $(CFLAGS) -c $< -o $@ -I .
 
-$(LIB): $(LIB_DIR)/$(LIB)
-	cp $(LIB_DIR)/$(LIB) .
+$(LIB): $(LIB_PATH)
+	cp $(LIB_PATH) .
 
-$(LIB_DIR)/$(LIB):
+$(LIB_PATH):
 	$(MAKE) -C $(LIB_DIR)
 
 all: $(NAME)
@@ -37,7 +34,7 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIB_DIR) $@
-	rm $(NAME) $(LIB) -f
+	rm $(NAME) -f
 
 re: fclean
 	$(MAKE) all --no-print-directory

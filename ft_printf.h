@@ -6,14 +6,14 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:37 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 14:37:08 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:57:16 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 char	*ft_ltoa_base(const char *base, long n);
 int		ft_putnbr(va_list args);

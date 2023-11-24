@@ -6,11 +6,11 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:18:24 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 15:00:54 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:41:18 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(va_list args)
 {
