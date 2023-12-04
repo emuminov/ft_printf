@@ -42,5 +42,6 @@ re: fclean
 test: $(NAME)
 	$(CC) tests/ft_printf.c $(NAME) -o test.out
 	./test.out
+	valgrind ./test.out --check-leaks=full -s
 	
 .PHONY: all clean fclean re test

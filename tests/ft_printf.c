@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 20:36:27 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:31:22 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(void)
 {
 	{
 		red("char test\n");
-		// printf("\033[1;31mchar test\033[1;0m\n");
 		printf("--------------------------------\n");
 		printf_test("a", "hello! %c hehe\n", 'a');
 		printf_test("a, b", "hello! %c %c hehe\n", 'a', 'b');
@@ -139,5 +138,11 @@ int	main(void)
 		red("\nmultiple args test\n");
 		printf("--------------------------------\n");
 		printf_test("NULL, hello, INT_MAX, &printf, h", "%p %s %d %p %% %c %X\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
+	}
+
+	{
+		red("\nnon-existent flags test\n");
+		printf("--------------------------------\n");
+		printf_test("NULL, hello, INT_MAX, &printf, h (with bad flags)", "%л %ш %ж %й %в %с %Ч\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
 	}
 }

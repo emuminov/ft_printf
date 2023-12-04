@@ -6,11 +6,18 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:35 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 16:41:25 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:33:44 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_putbadflag(char flag)
+{
+	ft_putchar_fd('%', 0);
+	ft_putchar_fd(flag, 0);
+	return (2);
+}
 
 static int	ft_format(char flag, va_list args)
 {
@@ -33,6 +40,8 @@ static int	ft_format(char flag, va_list args)
 		count = ft_puthex_ui(1, args);
 	else if (flag == '%')
 		ft_putchar_fd('%', 0);
+	else
+		count = ft_putbadflag(flag);
 	return (count);
 }
 
