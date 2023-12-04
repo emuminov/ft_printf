@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/04 20:31:22 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:50:44 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@
 int	main(void)
 {
 	{
+		red("basic test\n");
+		printf("--------------------------------\n");
+		printf_test("a", "1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest\n", 'a');
+	}
+	{
 		red("char test\n");
 		printf("--------------------------------\n");
 		printf_test("a", "hello! %c hehe\n", 'a');
@@ -44,6 +49,7 @@ int	main(void)
 		printf_test("256", "%c\n", 256);
 		printf_test("-400", "%c\n", -400);
 		printf_test("400", "%c\n", 400);
+		printf_test("\0, '1', '0'", "%c%c%c\n", '\0', '1', '0');
 	}
 
 	{
@@ -103,6 +109,7 @@ int	main(void)
 	{
 		red("\nunsigned int test\n");
 		printf("--------------------------------\n");
+		printf_test("4294967295", "hello! %u hehe\n", UINT_MAX);
 		printf_test("4", "hello! %u hehe\n", 4);
 		printf_test("-4", "hello! %u hehe\n", -4);
 	}
