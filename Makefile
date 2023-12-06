@@ -1,5 +1,5 @@
 #comilation vars-----------------------------------
-CC=gcc
+CC=cc
 CFLAGS=-Wall -Wextra -Werror
 
 #subject declarations------------------------------
@@ -14,7 +14,7 @@ LIB_DIR=libft
 LIB_PATH=$(LIB_DIR)/$(LIB)
 
 #rules---------------------------------------------
-$(NAME): $(OBJS) $(LIB) $(HEAD)
+$(NAME): $(LIB) $(HEAD) $(OBJS)
 	cp $(LIB) $(NAME)
 	ar crv $(NAME) $(OBJS)
 

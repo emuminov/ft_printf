@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 20:36:27 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:52:47 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,11 @@ int	main(void)
 		printf("--------------------------------\n");
 		printf_test("4", "hello! %u hehe\n", 4);
 		printf_test("-4", "hello! %u hehe\n", -4);
+		printf_test("UINT_MAX", "hello! %u hehe\n", UINT_MAX);
+		printf_test("UINT_MAX", "hello! %u hehe\n", UINT_MAX + 1);
+
+
+
 	}
 
 	{
@@ -131,8 +136,10 @@ int	main(void)
 	{
 		red("\npersentage sign test\n");
 		printf("--------------------------------\n");
+		printf_test("(nothing)", "%%\n", 0);
 		printf_test("(nothing)", "hello! %% hehe\n", 0);
 		printf_test("100", "hello! %% hehe %d\n", 100);
+		printf_test("%%c%%s%%p%%d%%i%%u%%x%%X%%", "%%c%%s%%p%%d%%i%%u%%x%%X%%\n", 0);
 	}
 
 	{
