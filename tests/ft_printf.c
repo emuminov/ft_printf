@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 13:52:47 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:10:49 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@
 int	main(void)
 {
 	{
+		red("basic test\n");
+		printf("--------------------------------\n");
+		printf_test("a", "1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest\n", 'a');
+	}
+	{
 		red("char test\n");
-		// printf("\033[1;31mchar test\033[1;0m\n");
 		printf("--------------------------------\n");
 		printf_test("a", "hello! %c hehe\n", 'a');
 		printf_test("a, b", "hello! %c %c hehe\n", 'a', 'b');
@@ -45,6 +49,7 @@ int	main(void)
 		printf_test("256", "%c\n", 256);
 		printf_test("-400", "%c\n", -400);
 		printf_test("400", "%c\n", 400);
+		printf_test("\0, '1', '0'", "%c%c%c\n", '\0', '1', '0');
 	}
 
 	{
@@ -104,6 +109,7 @@ int	main(void)
 	{
 		red("\nunsigned int test\n");
 		printf("--------------------------------\n");
+		printf_test("4294967295", "hello! %u hehe\n", UINT_MAX);
 		printf_test("4", "hello! %u hehe\n", 4);
 		printf_test("-4", "hello! %u hehe\n", -4);
 		printf_test("UINT_MAX", "hello! %u hehe\n", UINT_MAX);
@@ -121,6 +127,7 @@ int	main(void)
 		printf_test("UINT_MAX + 1", "hello! %x hehe\n", UINT_MAX + 1);
 		printf_test("UINT_MAX + 2", "hello! %x hehe\n", UINT_MAX + 2);
 		printf_test("-12", "hello! %x hehe\n", -12);
+		printf_test("3735929054u", "the password is %x\n", 3735929054u)
 	}
 
 	{
@@ -146,5 +153,11 @@ int	main(void)
 		red("\nmultiple args test\n");
 		printf("--------------------------------\n");
 		printf_test("NULL, hello, INT_MAX, &printf, h", "%p %s %d %p %% %c %X\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
+	}
+
+	{
+		red("\nnon-existent flags test\n");
+		printf("--------------------------------\n");
+		printf_test("NULL, hello, INT_MAX, &printf, h (with bad flags)", "%л %ш %ж %й %в %с %Ч\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
 	}
 }

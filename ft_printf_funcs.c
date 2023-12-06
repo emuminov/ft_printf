@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:18:24 by emuminov          #+#    #+#             */
-/*   Updated: 2023/11/24 22:53:32 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:05:35 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_putnbr_unsigned(va_list args)
 	str = ft_ltoa_base("0123456789", va_arg(args, unsigned int));
 	if (!str)
 	{
-		ft_putstr_fd("(nil)", 0);
+		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
 	l = ft_strlen(str);
@@ -52,13 +52,13 @@ int	ft_puthex_ptr(va_list args)
 	arg = va_arg(args, void *);
 	if (!arg)
 	{
-		ft_putstr_fd("(nil)", 0);
+		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
 	str = ft_ltoa_base("0123456789abcdef", (long) arg);
 	if (!str)
 	{
-		ft_putstr_fd("(nil)", 0);
+		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
 	l = ft_strlen(str);
@@ -76,7 +76,7 @@ int	ft_puthex_ui(int toupper, va_list args)
 	str = ft_ltoa_base("0123456789abcdef", va_arg(args, unsigned int));
 	if (!str)
 	{
-		ft_putstr_fd("(nil)", 0);
+		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
 	i = 0;
