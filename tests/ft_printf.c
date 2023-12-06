@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 14:10:49 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:18:50 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 #include "../ft_printf.h"
 
-#define printf_test(input, format_str, args...) \
+#define printf_test(input, format_str, ...) \
 { \
 	printf("TESTING INPUT: %s\n", input); \
-	int printf_output = printf(format_str, args); \
-	int ft_printf_output = ft_printf(format_str, args); \
+	int printf_output = printf(format_str __VA_OPT__(,) __VA_ARGS__); \
+	int ft_printf_output = ft_printf(format_str __VA_OPT__(,) __VA_ARGS__); \
 	printf("printf len:   \t\t%d\n", printf_output); \
 	printf("ft_printf len:\t\t%d\n", ft_printf_output); \
 	printf("\n"); \
@@ -36,7 +36,7 @@ int	main(void)
 	{
 		red("basic test\n");
 		printf("--------------------------------\n");
-		printf_test("a", "1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest\n", 'a');
+		printf_test("(nothing)", "1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest\n");
 	}
 	{
 		red("char test\n");
@@ -143,10 +143,10 @@ int	main(void)
 	{
 		red("\npersentage sign test\n");
 		printf("--------------------------------\n");
-		printf_test("(nothing)", "%%\n", 0);
-		printf_test("(nothing)", "hello! %% hehe\n", 0);
+		printf_test("(nothing)", "%%\n");
+		printf_test("(nothing)", "hello! %% hehe\n");
 		printf_test("100", "hello! %% hehe %d\n", 100);
-		printf_test("%%c%%s%%p%%d%%i%%u%%x%%X%%", "%%c%%s%%p%%d%%i%%u%%x%%X%%\n", 0);
+		printf_test("%%c%%s%%p%%d%%i%%u%%x%%X%%", "%%c%%s%%p%%d%%i%%u%%x%%X%%\n");
 	}
 
 	{
@@ -158,6 +158,6 @@ int	main(void)
 	{
 		red("\nnon-existent flags test\n");
 		printf("--------------------------------\n");
-		printf_test("NULL, hello, INT_MAX, &printf, h (with bad flags)", "%л %ш %ж %й %в %с %Ч\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
+		printf_test("(nothing)", "%л %ш %ж %й %в %с %Ч\n");
 	}
 }
