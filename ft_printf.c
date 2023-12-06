@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:35 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 14:11:32 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:53:16 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	ft_format(char flag, va_list args)
 	else if (flag == 'X')
 		count = ft_puthex_ui(1, args);
 	else if (flag == '%')
-		ft_putchar_fd('%', 0);
+		ft_putchar_fd('%', 1);
 	else
 		count = ft_putbadflag(flag);
 	return (count);
@@ -63,7 +63,7 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 		{
-			ft_putchar_fd(str[i], 0);
+			ft_putchar_fd(str[i], 1);
 			count++;
 		}
 		i++;
