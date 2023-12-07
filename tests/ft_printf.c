@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/07 00:58:12 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:59:06 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,13 @@ int	main(void)
 		red("\nmultiple args test\n");
 		printf("--------------------------------\n");
 		printf_test("NULL, hello, INT_MAX, &printf, h", "%p %s %d %p %% %c %X\n", NULL, "hello", INT_MAX, &printf, 'h', INT_MIN);
+	}
+
+	{
+		red("\nNULL format test\n");
+		printf("--------------------------------\n");
+		printf_test("(nothing, to NULL format string)", NULL);
+		printf_test("a, b (to NULL format string)", NULL, 'a', 'b');
 	}
 
 	{
