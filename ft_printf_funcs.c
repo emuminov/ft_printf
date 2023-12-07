@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:18:24 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 19:53:13 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/07 00:55:44 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_puthex_ptr(va_list args)
 		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
-	str = ft_ltoa_base("0123456789abcdef", (long) arg);
+	str = ft_ultoa_base("0123456789abcdef", (unsigned long) arg);
 	if (!str)
 	{
 		ft_putstr_fd("(nil)", 1);
@@ -97,6 +97,8 @@ int	ft_putstr_arg(va_list args)
 	const char	*str;
 
 	str = va_arg(args, const char *);
+	if (!str)
+		return (write(1, "(null)", 6));
 	l = ft_strlen(str);
 	write(1, str, l);
 	return (l);

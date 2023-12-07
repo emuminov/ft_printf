@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:32 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 16:18:50 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/07 00:58:12 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(void)
 		printf("--------------------------------\n");
 		printf_test("(nothing)", "1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest\n");
 	}
+
 	{
 		red("char test\n");
 		printf("--------------------------------\n");
@@ -59,6 +60,7 @@ int	main(void)
 		printf_test("(empty string)", "hello! %s hehe\n", "");
 		printf_test("(empty string)", "%sa\n", "");
 		printf_test("(empty string)", "%s", "");
+		printf_test("NULL", "NULL %s NULL\n", NULL)
 	}
 
 	{
@@ -104,6 +106,7 @@ int	main(void)
 		printf("--------------------------------\n");
 		printf_test("NULL", "hello! %p hehe\n", NULL);
 		printf_test("hehe", "hello! %p hehe\n", "hehe");
+		printf_test("LONG_MIN, LONG_MAX", "%p %p\n", LONG_MIN, (void*) LONG_MAX);
 	}
 
 	{
@@ -114,9 +117,6 @@ int	main(void)
 		printf_test("-4", "hello! %u hehe\n", -4);
 		printf_test("UINT_MAX", "hello! %u hehe\n", UINT_MAX);
 		printf_test("UINT_MAX", "hello! %u hehe\n", UINT_MAX + 1);
-
-
-
 	}
 
 	{

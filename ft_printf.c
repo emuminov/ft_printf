@@ -6,7 +6,7 @@
 /*   By: emuminov <emuminov@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:32:35 by emuminov          #+#    #+#             */
-/*   Updated: 2023/12/06 19:53:16 by emuminov         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:32:41 by emuminov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,15 @@ int	ft_printf(const char *str, ...)
 	size_t	i;
 	size_t	count;
 
+	if (!str)
+		return (0);
 	va_start(args, str);
 	i = 0;
 	count = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
-			count += ft_format(str[i + 1], args);
-			i++;
-		}
+			count += ft_format(str[i++ + 1], args);
 		else
 		{
 			ft_putchar_fd(str[i], 1);
